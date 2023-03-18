@@ -58,17 +58,17 @@ app.post('/create',(req,res)=>{
 
 app.post('/update',(req,res)=>{
     
-    const id=req.body.id;
-    const inc=req.body.inc
-    console.log(inc)
-    async function updateLike(){
+    const id=req.body.id
+    const inc=req.body.inc   
+     async function updateLike(){
       try{
         const shayari=await Shayari.findById(id)
         let likeupdate
-        if(inc===true){
+        console.log(inc)
+        if(inc===1){
             likeupdate=shayari.likes+1
         }
-        if(inc===false){
+        else if(inc===0){
             likeupdate=shayari.likes-1
         }
         const update=await Shayari.findByIdAndUpdate(id,{likes: likeupdate})
